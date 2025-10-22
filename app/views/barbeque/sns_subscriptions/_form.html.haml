@@ -17,8 +17,7 @@
           - if @sns_subscription.persisted?
             .sns_subscription_topic_arn= @sns_subscription.topic_arn
           - else
-            = f.collection_select :topic_arn, @sns_topic_arns.map {|t| [t] }, :first, :first,
-              { prompt: true }, class: 'form-control'
+            = f.text_field :topic_arn, class: 'form-control'
 
       .row.form-group
         .col-md-4

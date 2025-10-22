@@ -62,7 +62,6 @@ describe Barbeque::SnsSubscriptionsController do
       it 'does not create a record and shows error message' do
         expect(sqs_client).to receive(:get_queue_attributes).with(queue_url: job_queue.queue_url, attribute_names: ['QueueArn'])
         expect(sns_client).to receive(:subscribe).and_raise(Aws::SNS::Errors::NotFound.new(self, 'not found'))
-        allow(controller).to receive(:fetch_sns_topic_arns).and_return([])
         post :create , params: { sns_subscription: attributes }
         expect(response).to render_template(:new)
         expect(assigns(:sns_subscription).errors[:topic_arn]).to eq(['is not found'])
@@ -73,7 +72,6 @@ describe Barbeque::SnsSubscriptionsController do
       it 'does not create a record and shows error message' do
         expect(sqs_client).to receive(:get_queue_attributes).with(queue_url: job_queue.queue_url, attribute_names: ['QueueArn'])
         expect(sns_client).to receive(:subscribe).and_raise(Aws::SNS::Errors::AuthorizationError.new(self, 'not found'))
-        allow(controller).to receive(:fetch_sns_topic_arns).and_return([])
         post :create , params: { sns_subscription: attributes }
         expect(response).to render_template(:new)
         expect(assigns(:sns_subscription).errors[:topic_arn]).to eq(['is not authorized'])
