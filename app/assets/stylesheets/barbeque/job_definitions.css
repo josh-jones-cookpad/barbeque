@@ -38,22 +38,8 @@
   display: block;
 }
 
-.barbeque_job_definitions_controller .table.table-bordered td {
-  word-wrap: break-word;
-  word-break: break-word;
-  overflow-wrap: break-word;
-  white-space: normal;
-  min-width: 100px;
-}
-
+.barbeque_job_definitions_controller .table.table-bordered td,
 .barbeque_job_definitions_controller .table.table-bordered th {
-  word-wrap: break-word;
-  word-break: break-word;
-  overflow-wrap: break-word;
-  white-space: normal;
+  overflow-wrap: anywhere;
   min-width: 100px;
-}
-
-.barbeque_job_definitions_controller .box-body {
-  overflow-x: scroll;
 }
